@@ -2,6 +2,8 @@ var express=require("express");
 
 var app = express();
 
+var port = process.env.PORT || 1337;
+
 
 app.get("/",function(req,res){
 
@@ -10,4 +12,4 @@ app.get("/",function(req,res){
 });
 
 
-app.listen(process.ENV.port );
+app.listen(port);
