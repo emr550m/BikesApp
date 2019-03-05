@@ -20,6 +20,16 @@ app.get("/",function(req,res){
 
 });
 
+app.use(function (req, res, next) {
+    var send = res.send;
+    res.send = function (data) {
+         log.info("Response:" + data + "\n\n");
+        send.call(this, data);
+    };
+     log.info("Request" + JSON.stringify(req.body));
+    next();
+});
+
 
 
 app.use(["/api/open", "/api/open*"], function (request, response, next) {
