@@ -26,7 +26,7 @@ app.use(function (req, res, next) {
          log.info("Response:" + data + "\n\n");
         send.call(this, data);
     };
-     log.info("Request" + JSON.stringify(req.body));
+    log.info("Request" + JSON.stringify(req.body));
     next();
 });
 
@@ -37,13 +37,6 @@ app.use(["/api/open", "/api/open*"], function (request, response, next) {
 
     requestRedirect(request, response).then(function (result) {
         response.json(result);
-
-        log.info("INFO_START:");
-        log.info("PATH:\t" + request.path);
-        log.info("REQUEST:\n" + JSON.stringify(request.body));
-        log.info("RESULT:\n" + JSON.stringify(result));
-        log.info("INFO_END:\n\n");
-        console.log("REQUEST:\n" + JSON.stringify(request.body));
         next();
     }).catch(function (err) {
         next({ body: err, reqBody: request.body, message: "Error" });
@@ -60,13 +53,6 @@ app.use(["/api/auth", "/api/auth*"], function (request, response, next) {
 
             requestRedirect(request, response).then(function (result) {
                 response.json(result);
-
-                log.info("INFO_START:");
-                log.info("PATH:\t" + request.path);
-                log.info("REQUEST:\n" + JSON.stringify(request.body));
-                log.info("RESULT:\n" + JSON.stringify(result));
-                log.info("INFO_END:\n\n");
-
                 next();
             }).catch(function (err) {
                 next({ body: err, reqBody: request.body, message: "Error" });
