@@ -1,4 +1,4 @@
-var connectionString = process.env['mongoConnection'];
+var connectionString = process.env['CUSTOMCONNSTR_mongoConnection'];
 
 const MongoClient = require('mongodb').MongoClient;
 const dbName = 'nodejs';
