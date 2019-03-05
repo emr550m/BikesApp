@@ -7,7 +7,7 @@ var sessionUtil = require("./utility/session");
 var port = process.env.PORT || 8080;
 
 db.OpenDB().then((result) => {
-    console.log("DB Connection OK: " + result);
+    log.info("DB Connection OK: " + result);
 
     const app = express()
     app.use(bodyParser.json());
@@ -17,10 +17,10 @@ db.OpenDB().then((result) => {
     app.use(function (req, res, next) {
         var send = res.send;
         res.send = function (data) {
-            console.log("Response:" + data + "\n\n");
+            log.info("Response:" + data + "\n\n");
             send.call(this, data);
         };
-        console.log("Request" + JSON.stringify(req.body));
+        log.info("Request" + JSON.stringify(req.body));
         next();
     });
     app.post(["/api/open", "/api/open*"], function (request, response, next) {
@@ -60,8 +60,8 @@ db.OpenDB().then((result) => {
     //General Error Logger..
     app.use(function (err, req, res, next) {
         if (err) {
-            console.log("General Error:");
-            console.log(err.stack);
+            log.error("General Error:");
+            log.error(err.stack);
         }
         res.json({ message: "Global Error Occurred" });
         next();
@@ -70,5 +70,5 @@ db.OpenDB().then((result) => {
     app.listen(port, () => console.log("Server Ready On port 8080"));
 
 }).catch((err) => {
-    console.log("DB Connection Not OK!: " + err);
+    log.error("DB Connection Not OK!: " + err);
 });
