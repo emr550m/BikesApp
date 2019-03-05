@@ -1,4 +1,4 @@
-var connectionString = "mongodb://nodejs:nodejs@nodejs-shard-00-00-4apei.azure.mongodb.net:27017,nodejs-shard-00-01-4apei.azure.mongodb.net:27017,nodejs-shard-00-02-4apei.azure.mongodb.net:27017/test?ssl=true&replicaSet=NodeJS-shard-0&authSource=admin&retryWrites=true"
+var connectionString = process.ENV.mongoConnection;
 
 const MongoClient = require('mongodb').MongoClient;
 const dbName = 'nodejs';
