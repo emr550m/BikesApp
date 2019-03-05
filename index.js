@@ -23,6 +23,10 @@ db.OpenDB().then((result) => {
         log.info("Request" + JSON.stringify(req.body));
         next();
     });
+    app.get("/", function (req, res, next) { 
+        res.json({ message: "Hello From Bikes API!" });
+        next();
+    });
     app.post(["/api/open", "/api/open*"], function (request, response, next) {
 
         var requestRedirect = require("./api/open" + request.url.replace('/api/open', ''));
@@ -66,6 +70,9 @@ db.OpenDB().then((result) => {
         res.json({ message: "Global Error Occurred" });
         next();
     });
+
+
+ 
  
     app.listen(port, () => console.log("Server Ready On port 8080"));
 
