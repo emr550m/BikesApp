@@ -33,7 +33,7 @@ app.use(["/api/open", "/api/open*"], function (request, response, next) {
         log.info("REQUEST:\n" + JSON.stringify(request.body));
         log.info("RESULT:\n" + JSON.stringify(result));
         log.info("INFO_END:\n\n");
-
+        console.log("REQUEST:\n" + JSON.stringify(request.body));
         next();
     }).catch(function (err) {
         next({ body: err, reqBody: request.body, message: "Error" });
